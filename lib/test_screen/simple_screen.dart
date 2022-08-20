@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/main_presentation/main_controller.dart';
+import 'package:get/get.dart';
 
 class SimpleScreen extends StatelessWidget {
   const SimpleScreen({
@@ -21,17 +23,33 @@ class SimpleScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => SimpleScreen(
-                      tabName: tabName,
-                      screenNumber: screenNumber + 1,
-                    ),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => SimpleScreen(
+                    tabName: tabName,
+                    screenNumber: screenNumber + 1,
                   ),
-                );
-              },
-              child: const Text('Click Me')),
+                ),
+              );
+            },
+            child: const Text(
+              'Click Me',
+            ),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              if (Get.find<MainController>().themeMode.value == ThemeMode.dark) {
+                Get.find<MainController>().themeMode(ThemeMode.light);
+              } else {
+                Get.find<MainController>().themeMode(ThemeMode.dark);
+              }
+            },
+            child: const Text(
+              'Change Theme',
+            ),
+          ),
         ],
       ),
     );

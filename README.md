@@ -1,1 +1,6 @@
-# flutter_template
+# Flutter Template
+
+## Features
+
+- Bottom navigation with multiple backstack (like Instagram)
+- Light & Dark Theme

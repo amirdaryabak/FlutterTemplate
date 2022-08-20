@@ -58,12 +58,12 @@ class MainScreen extends StatelessWidget {
                       _navigator(
                         key: _firstScreenKey,
                         index: firstIndex,
-                        child: Container(color: Colors.blue),
+                        child: Container(),
                       ),
                       _navigator(
                         key: _secondScreenKey,
                         index: secondIndex,
-                        child: Container(color: Colors.red),
+                        child: Container(),
                       ),
                       _navigator(
                         key: _thirdScreenKey,

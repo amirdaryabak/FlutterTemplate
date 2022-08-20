@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/main_presentation/main_screen.dart';
-import 'package:flutter_template/theme.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final SvgPicture iconFileName;
@@ -35,20 +34,15 @@ class BottomNavigationItem extends StatelessWidget {
                       bottom: 0,
                       child: Container(
                         height: bottomNavigationHeight,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               title,
-                              style: const TextStyle(
-                                color: LightThemeColors.primaryColor,
-                                fontFamily: 'iransans',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
+                              style: Theme.of(context).textTheme.headline6,
                             ),
                           ],
                         ),
@@ -67,9 +61,9 @@ class BottomNavigationItem extends StatelessWidget {
                               width: 50,
                               height: 50,
                               padding: const EdgeInsets.all(4),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.surface,
+                                borderRadius: const BorderRadius.all(
                                   Radius.circular(10),
                                 ),
                               ),
@@ -91,8 +85,8 @@ class BottomNavigationItem extends StatelessWidget {
                       right: 0,
                       bottom: 0,
                       child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                         height: bottomNavigationHeight,
                         child: Column(
@@ -103,6 +97,7 @@ class BottomNavigationItem extends StatelessWidget {
                             const SizedBox(height: 4),
                             Text(
                               title,
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
                         ),
