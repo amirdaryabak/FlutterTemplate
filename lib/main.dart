@@ -5,14 +5,13 @@ import 'package:flutter_template/app_theme/app_theme_config.dart';
 import 'package:flutter_template/injector.dart';
 import 'package:flutter_template/main_presentation/main_controller.dart';
 import 'package:flutter_template/main_presentation/main_screen.dart';
-import 'package:flutter_template/app_theme/theme.dart';
 import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: LightThemeColors.primaryColor,
+    statusBarColor: Colors.white,
     statusBarIconBrightness: Brightness.dark,
     systemNavigationBarColor: Colors.white,
     systemNavigationBarIconBrightness: Brightness.dark,
