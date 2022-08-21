@@ -14,7 +14,13 @@ import 'package:flutter/services.dart';
 class Assets {
   Assets._();
 
+  static const String file = 'assets/file.mp4';
+  static const SvgGenImage mainBackground =
+      SvgGenImage('assets/mainBackground.svg');
+  static const AssetGenImage musicCover =
+      AssetGenImage('assets/musicCover.jpg');
   static const SvgGenImage test = SvgGenImage('assets/test.svg');
+  static const String testMusic = 'assets/testMusic.mp3';
 }
 
 class AssetGenImage {

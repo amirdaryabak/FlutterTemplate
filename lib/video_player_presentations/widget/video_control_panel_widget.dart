@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/utils/duration_extensions.dart';
+import 'package:flutter_template/core/utils/duration_extensions.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoControlPanel extends StatefulWidget {
