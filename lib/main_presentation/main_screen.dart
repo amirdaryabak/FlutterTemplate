@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/bottom_navigation/bottom_navigation.dart';
 import 'package:flutter_template/main_presentation/main_controller.dart';
 import 'package:flutter_template/test_screen/simple_screen.dart';
+import 'package:flutter_template/video_player_presentations/video_player_screen.dart';
 import 'package:get/get.dart';
 
 const int firstIndex = 0;
@@ -63,7 +64,7 @@ class MainScreen extends StatelessWidget {
                       _navigator(
                         key: _secondScreenKey,
                         index: secondIndex,
-                        child: Container(),
+                        child: const VideoPlayerScreen(),
                       ),
                       _navigator(
                         key: _thirdScreenKey,
