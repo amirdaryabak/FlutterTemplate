@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
-import 'package:iranian_core_package/core/resources/data_state.dart';
 import 'package:retrofit/dio.dart';
 
 class ExceptionParser {

@@ -1,7 +1,7 @@
-import 'package:iranian_core_package/core/constants/core_constants.dart';
+import 'package:flutter_template/core/data_source/remote/interceptors/authentication_interceptor.dart';
+import 'package:flutter_template/core/data_source/remote/interceptors/logging_interceptor.dart';
+import 'package:flutter_template/core/utils/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:iranian_core_package/core/datasources/remote/interceptors/authentication_interceptor.dart';
-import 'package:iranian_core_package/core/datasources/remote/interceptors/logging_interceptor.dart';
 
 class DioProvider {
   late Dio dio;
@@ -12,8 +12,8 @@ class DioProvider {
   DioProvider._internal() {
     dio = Dio(
       BaseOptions(
-        connectTimeout: CoreConstants.kConnectTimeout,
-        receiveTimeout: CoreConstants.kReceiveTimeout,
+        connectTimeout: Constants.kConnectTimeout,
+        receiveTimeout: Constants.kReceiveTimeout,
       ),
     )..interceptors.addAll(
         [

@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/app_theme/app_theme_config.dart';
+import 'package:flutter_template/core/config/app_theme/app_theme_config.dart';
+import 'package:flutter_template/core/config/my_http_overrides.dart';
+import 'package:flutter_template/feature_weather/presentation/screens/weather_screen.dart';
 import 'package:flutter_template/injector.dart';
+import 'package:flutter_template/locator.dart';
 import 'package:flutter_template/main_presentation/main_controller.dart';
-import 'package:flutter_template/main_presentation/main_screen.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -18,7 +20,8 @@ void main() async {
   ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  Injector.initDependencies();
+  await Injector.initDependencies();
+  await Locator.setup();
 
   runApp(App());
 }
@@ -41,16 +44,8 @@ class App extends StatelessWidget {
         theme: _mainController.themeMode.value == ThemeMode.dark
             ? AppThemeConfig.dark().getTheme()
             : AppThemeConfig.light().getTheme(),
-        home: MainScreen(),
+        home: WeatherScreen(),
       );
     });
-  }
-}
-
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }

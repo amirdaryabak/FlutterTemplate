@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:iranian_core_package/core/utils/toast_utils.dart';
-import 'package:iranian_core_package/core/utils/utils.dart';
 
 class LoggingInterceptor extends Interceptor {
   @override
@@ -37,17 +35,7 @@ class LoggingInterceptor extends Interceptor {
         print('');
       }
     }
-    /*if (Utils.isPrePublishTest) {
-      ToastUtils.showSnackBar(
-      toastType: ToastyType.error,
-      msgError: 'ERROR${err.error} => PATH: ${err.requestOptions.path} CODE: ${err.response?.statusCode}',
-    );
-    }*/
     if (kDebugMode) {
-      /*ToastUtils.showSnackBar(
-        toastType: ToastyType.error,
-        msgError: 'ERROR${err.error} => PATH: ${err.requestOptions.path} CODE: ${err.response?.statusCode}',
-      );*/
       print('ERROR${err.error} => PATH: ${err.requestOptions.path} CODE: ${err.response?.statusCode}');
     }
     return super.onError(err, handler);

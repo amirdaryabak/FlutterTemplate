@@ -1,48 +1,20 @@
-
 import 'package:dio/dio.dart';
-import 'package:flutter_advanced_course/core/utils/constants.dart';
+import 'package:flutter_template/core/utils/constants.dart';
+import 'package:flutter_template/feature_weather/data/dto/current_city_dto.dart';
+import 'package:retrofit/retrofit.dart';
 
-import '../../../../../core/params/ForecastParams.dart';
+part 'api_provider.g.dart';
 
-class ApiProvider{
-  final Dio _dio = Dio();
-  var apiKey = Constants.apiKeys1;
+@RestApi(baseUrl: Constants.baseUrl)
+abstract class ApiProvider {
+  factory ApiProvider(Dio dio, {String baseUrl}) = _ApiProvider;
 
-  /// current weather api call
-  Future<dynamic> callCurrentWeather(cityName) async {
-    var response = await _dio.get(
-        '${Constants.baseUrl}/data/2.5/weather',
-        queryParameters: {
-          'q' : cityName,
-          'appid' : apiKey,
-          'units' : 'metric'
-        }
-    );
-    return response;
-  }
 
-  /// 7 days forecast api
-  Future<dynamic> sendRequest7DaysForcast(ForecastParams params) async {
+  @GET('data/2.5/weather')
+  Future<HttpResponse<CurrentCityDto>> getCurrentCityWeather({
+    @Query('q') required String query,
+    @Query('appid') String page = Constants.apiKeys1,
+    @Query('units') String units = 'metric',
+  });
 
-    var response = await _dio.get(
-        "${Constants.baseUrl}/data/2.5/onecall",
-        queryParameters: {
-          'lat': params.lat,
-          'lon': params.lon,
-          'exclude': 'minutely,hourly',
-          'appid': apiKey,
-          'units': 'metric'
-        });
-
-    return response;
-  }
-
-  /// city name suggest api
-  Future<dynamic> sendRequestCitySuggestion(String prefix) async {
-    var response = await _dio.get(
-        "http://geodb-free-service.wirefreethought.com/v1/geo/cities",
-        queryParameters: {'limit': 7, 'offset': 0, 'namePrefix': prefix});
-
-    return response;
-  }
 }

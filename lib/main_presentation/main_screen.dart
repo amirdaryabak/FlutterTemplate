@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/bottom_navigation/bottom_navigation.dart';
+import 'package:flutter_template/core/widgets/bottom_navigation/bottom_navigation.dart';
 import 'package:flutter_template/home_presentation/home_screen.dart';
 import 'package:flutter_template/main_presentation/main_controller.dart';
 import 'package:flutter_template/core/utils/simple_screen.dart';

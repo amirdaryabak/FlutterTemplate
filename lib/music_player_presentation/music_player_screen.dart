@@ -33,6 +33,13 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
   }
 
   @override
+  Future<void> dispose() async {
+    await audioPlayer.pause();
+    await audioPlayer.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,

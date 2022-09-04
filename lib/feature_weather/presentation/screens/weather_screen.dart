@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/core/widgets/app_background.dart';
 import 'package:flutter_template/core/widgets/dot_loading_widget.dart';
 import 'package:flutter_template/feature_weather/domain/entities/current_city_entity.dart';
 import 'package:flutter_template/feature_weather/presentation/bloc/cw_status.dart';
 import 'package:flutter_template/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class WeatherScreen extends StatefulWidget {
+  const WeatherScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<WeatherScreen> createState() => _WeatherScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _WeatherScreenState extends State<WeatherScreen> {
 
   String cityName = "Tehran";
   final PageController _pageController = PageController();
@@ -73,25 +74,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Padding(
                                           padding: const EdgeInsets.only(top: 50),
                                           child: Text(
-                                            currentCityEntity.name!,
+                                            currentCityEntity.name,
                                             style: const TextStyle(fontSize: 30,color: Colors.white),
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(top: 20),
                                           child: Text(
-                                            currentCityEntity.weather![0].description!,
+                                            currentCityEntity.weather[0].description,
                                             style: const TextStyle(fontSize: 20,color: Colors.grey),
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(top: 20),
-                                          child: AppBackground.setIconForMain(currentCityEntity.weather![0].description!),
+                                          child: AppBackground.setIconForMain(currentCityEntity.weather[0].description),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(top: 20),
                                           child: Text(
-                                            "${currentCityEntity.main!.temp!.round()}\u00B0",
+                                            "${currentCityEntity.main.temp.round()}\u00B0",
                                             style: const TextStyle(fontSize: 50,color: Colors.white),
                                           ),
                                         ),
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     color: Colors.grey,),
                                                 ),
                                                 const SizedBox(height: 10,),
-                                                Text("${currentCityEntity.main!.tempMax!.round()}\u00B0",
+                                                Text("${currentCityEntity.main.tempMax.round()}\u00B0",
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                     color: Colors.white,),)
@@ -137,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     color: Colors.grey,),
                                                 ),
                                                 const SizedBox(height: 10,),
-                                                Text("${currentCityEntity.main!.tempMin!.round()}\u00B0",
+                                                Text("${currentCityEntity.main.tempMin.round()}\u00B0",
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                     color: Colors.white,),)
