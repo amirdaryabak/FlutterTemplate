@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/main_presentation/main_controller.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/core/config/bloc/theme_bloc.dart';
 
 class SimpleScreen extends StatelessWidget {
   const SimpleScreen({
@@ -40,10 +40,11 @@ class SimpleScreen extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              if (Get.find<MainController>().themeMode.value == ThemeMode.dark) {
-                Get.find<MainController>().themeMode(ThemeMode.light);
+              ThemeBloc themeBloc = BlocProvider.of<ThemeBloc>(context);
+              if (themeBloc.themeMode == ThemeMode.dark) {
+                themeBloc.add(SetThemeEvent(themeMode: ThemeMode.light));
               } else {
-                Get.find<MainController>().themeMode(ThemeMode.dark);
+                themeBloc.add(SetThemeEvent(themeMode: ThemeMode.dark));
               }
             },
             child: const Text(

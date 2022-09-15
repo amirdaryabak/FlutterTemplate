@@ -70,7 +70,6 @@ class MainEntity {
 class SysEntity {
   final int type;
   final int id;
-  final double message;
   final String country;
   final int sunrise;
   final int sunset;
@@ -78,7 +77,6 @@ class SysEntity {
   SysEntity({
     required this.type,
     required this.id,
-    required this.message,
     required this.country,
     required this.sunrise,
     required this.sunset,

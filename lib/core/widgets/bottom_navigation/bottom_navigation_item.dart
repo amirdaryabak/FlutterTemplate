@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_template/main_presentation/main_screen.dart';
+import 'package:flutter_template/feature_main/presentation/screens/main_screen.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final SvgPicture iconFileName;

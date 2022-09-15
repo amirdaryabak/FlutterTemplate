@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/utils/duration_extensions.dart';
-import 'package:flutter_template/music_player_presentation/music_player_controller.dart';
-import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 
 class MusicPlayerScreen extends StatefulWidget {
@@ -15,15 +13,16 @@ class MusicPlayerScreen extends StatefulWidget {
 }
 
 class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
-  final MusicPlayerScreenController _controller = Get.find<MusicPlayerScreenController>();
   final AudioPlayer audioPlayer = AudioPlayer();
+  Duration? duration;
+  Timer? timer;
 
   @override
   void initState() {
     audioPlayer.setAsset('assets/testMusic.mp3').then((value) {
-      _controller.duration = value;
+      duration = value;
       audioPlayer.play();
-      _controller.timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
+      timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
         setState(() {});
       });
       setState(() {});
@@ -138,11 +137,11 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                       ),
                     ),
                   ),
-                  if (_controller.duration != null)
+                  if (duration != null)
                     Slider(
                       inactiveColor: Colors.white12,
                       activeColor: Colors.white,
-                      max: _controller.duration!.inMilliseconds.toDouble(),
+                      max: duration!.inMilliseconds.toDouble(),
                       value: audioPlayer.position.inMilliseconds.toDouble(),
                       onChangeStart: (value) {
                         audioPlayer.pause();
@@ -163,9 +162,9 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                           audioPlayer.position.toMinutesSeconds(),
                           style: const TextStyle(color: Colors.white, fontSize: 12),
                         ),
-                        if (_controller.duration != null)
+                        if (duration != null)
                           Text(
-                            _controller.duration!.toMinutesSeconds(),
+                            duration!.toMinutesSeconds(),
                             style: const TextStyle(color: Colors.white, fontSize: 12),
                           ),
                       ],

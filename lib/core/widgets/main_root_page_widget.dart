@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MainAppRootWidget extends StatelessWidget {
+  final Color backgroundColor;
   final Widget child;
-  // final String assetImage;
 
   const MainAppRootWidget({
     Key? key,
-    // required this.assetImage,
+    this.backgroundColor = Colors.transparent,
     required this.child,
   }) : super(key: key);
 
@@ -14,12 +14,6 @@ class MainAppRootWidget extends StatelessWidget {
   Widget build(BuildContext context) => SafeArea(
         child: Stack(
           children: [
-            /*SvgPicture.asset(
-              assetImage,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),*/
             Scaffold(
               backgroundColor: Colors.transparent,
               body: child,

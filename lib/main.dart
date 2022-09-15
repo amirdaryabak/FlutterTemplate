@@ -1,12 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/config/app_theme/app_theme_config.dart';
+import 'package:flutter_template/core/config/bloc/theme_bloc.dart';
 import 'package:flutter_template/core/config/my_http_overrides.dart';
-import 'package:flutter_template/feature_weather/presentation/screens/weather_screen.dart';
-import 'package:flutter_template/injector.dart';
+import 'package:flutter_template/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:flutter_template/locator.dart';
-import 'package:flutter_template/main_presentation/main_controller.dart';
+import 'package:flutter_template/feature_main/presentation/bloc/main_bloc.dart';
+import 'package:flutter_template/feature_main/presentation/screens/main_screen.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -20,32 +22,39 @@ void main() async {
   ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  await Injector.initDependencies();
   await Locator.setup();
 
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
-  final MainController _mainController = Get.find<MainController>();
-
-  App({Key? key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        supportedLocales: const [
-          Locale('en', ''),
-          Locale('fa', ''),
-        ],
-        locale: const Locale('en'),
-        theme: _mainController.themeMode.value == ThemeMode.dark
-            ? AppThemeConfig.dark().getTheme()
-            : AppThemeConfig.light().getTheme(),
-        home: WeatherScreen(),
-      );
-    });
+    return BlocProvider(
+      create: (context) => ThemeBloc(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          state as SetThemeState;
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            supportedLocales: const [
+              Locale('en', ''),
+              Locale('fa', ''),
+            ],
+            locale: const Locale('en'),
+            theme: state.themeMode == ThemeMode.dark ? AppThemeConfig.dark().getTheme() : AppThemeConfig.light().getTheme(),
+            home: MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (_) => locator<HomeBloc>()),
+                BlocProvider(create: (_) => locator<MainBloc>()),
+              ],
+              child: MainScreen(),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

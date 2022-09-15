@@ -6,7 +6,7 @@ import 'package:flutter_template/feature_weather/domain/entities/current_city_en
 import 'package:flutter_template/feature_weather/domain/repository/weather_repository.dart';
 
 class WeatherRepositoryImpl extends WeatherRepository {
-  ApiProvider _apiProvider;
+  final ApiProvider _apiProvider;
 
   WeatherRepositoryImpl(this._apiProvider);
 

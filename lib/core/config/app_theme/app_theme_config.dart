@@ -59,7 +59,7 @@ class AppThemeConfig {
     );
   }
 
-  TextTheme get enPrimaryTextTheme => GoogleFonts.latoTextTheme(
+  TextTheme get enPrimaryTextTheme => GoogleFonts.amiriTextTheme(
         TextTheme(
           bodyText2: TextStyle(
             fontSize: 15,

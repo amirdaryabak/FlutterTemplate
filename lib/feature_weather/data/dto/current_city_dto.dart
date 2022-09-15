@@ -112,14 +112,12 @@ class SysDto extends SysEntity {
   SysDto({
     required int type,
     required int id,
-    required double message,
     required String country,
     required int sunrise,
     required int sunset,
   }): super(
     type: type,
     id: id,
-    message: message,
     country: country,
     sunrise: sunrise,
     sunset: sunset,
@@ -128,7 +126,6 @@ class SysDto extends SysEntity {
   factory SysDto.fromJson(Map<String, dynamic> json) => SysDto(
     type: json["type"],
     id: json["id"],
-    message: json["message"].toDouble(),
     country: json["country"],
     sunrise: json["sunrise"],
     sunset: json["sunset"],
