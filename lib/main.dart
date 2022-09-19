@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/config/app_theme/app_theme_config.dart';
 import 'package:flutter_template/core/config/bloc/theme_bloc.dart';
 import 'package:flutter_template/core/config/my_http_overrides.dart';
+import 'package:flutter_template/feature_map/presentation/bloc/map_bloc.dart';
 import 'package:flutter_template/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:flutter_template/locator.dart';
 import 'package:flutter_template/feature_main/presentation/bloc/main_bloc.dart';
@@ -49,6 +50,7 @@ class App extends StatelessWidget {
               providers: [
                 BlocProvider(create: (_) => locator<HomeBloc>()),
                 BlocProvider(create: (_) => locator<MainBloc>()),
+                BlocProvider(create: (_) => locator<MapBloc>()),
               ],
               child: MainScreen(),
             ),

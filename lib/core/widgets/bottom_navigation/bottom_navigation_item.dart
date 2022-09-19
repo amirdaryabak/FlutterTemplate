@@ -35,7 +35,7 @@ class BottomNavigationItem extends StatelessWidget {
                       child: Container(
                         height: bottomNavigationHeight,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.surface,
+                          color: Theme.of(context).backgroundColor,
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +62,7 @@ class BottomNavigationItem extends StatelessWidget {
                               height: 50,
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.surface,
+                                color: Theme.of(context).backgroundColor,
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(10),
                                 ),
@@ -86,7 +86,7 @@ class BottomNavigationItem extends StatelessWidget {
                       bottom: 0,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.surface,
+                          color: Theme.of(context).backgroundColor,
                         ),
                         height: bottomNavigationHeight,
                         child: Column(

@@ -9,7 +9,7 @@ class DotLoadingWidget extends StatelessWidget {
     return Center(
         child: LoadingAnimationWidget.halfTriangleDot(
           size: 50,
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.secondary,
         ),
     );
   }

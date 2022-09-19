@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter_template/feature_main/presentation/screens/main_screen.dart';
 import 'package:meta/meta.dart';

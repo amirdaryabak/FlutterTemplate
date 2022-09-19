@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/core/widgets/main_button_widget.dart';
 import 'package:flutter_template/core/widgets/main_root_page_widget.dart';
+import 'package:flutter_template/feature_map/data/repository/map_repository_imp.dart';
+import 'package:flutter_template/feature_map/domain/repository/map_repository.dart';
+import 'package:flutter_template/feature_map/presentation/screens/map_screen.dart';
 import 'package:flutter_template/feature_weather/presentation/screens/weather_screen.dart';
 import 'package:flutter_template/feature_music_player/presentation/screens/music_player_screen.dart';
 import 'package:flutter_template/feature_video_player/presentation/screens/video_player_screen.dart';
+import 'package:flutter_template/gen/assets.gen.dart';
+import 'package:flutter_template/locator.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -58,6 +64,25 @@ class HomeScreen extends StatelessWidget {
               child: const Text(
                 'Weather Screenr',
               ),
+            ),
+            const SizedBox(height: 16),
+            MainButtonWidget(
+              isEnabled: true,
+              text: 'Map Screen',
+              primaryColor: Theme.of(context).primaryColor,
+              onTap: () {
+                Get.put<MapRepository>(MapRepositoryImpl(locator.get()));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => MapScreen(
+                      primaryColor: Theme.of(context).primaryColor,
+                      pinPurpleIconSvg: Assets.pinMapIcon.path,
+                      onGetOffAll: () {},
+                      funNavigation: () {},
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),

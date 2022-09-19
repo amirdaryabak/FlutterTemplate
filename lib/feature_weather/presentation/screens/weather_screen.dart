@@ -18,10 +18,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-
     BlocProvider.of<HomeBloc>(context).add(LoadCwEvent(cityName));
+    super.initState();
   }
 
   @override
@@ -46,98 +44,99 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 final CurrentCityEntity currentCityEntity = cwCompleted.currentCityEntity;
 
                 return Expanded(
-                    child: ListView(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: height * 0.02),
-                      child: SizedBox(
-                        width: width,
-                        height: 400,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 50),
-                              child: Text(
-                                currentCityEntity.name,
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: height * 0.02),
+                        child: SizedBox(
+                          width: width,
+                          height: 400,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 50),
+                                child: Text(
+                                  currentCityEntity.name,
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Text(
-                                currentCityEntity.weather[0].description,
-                                style: const TextStyle(fontSize: 20, color: Colors.grey),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Text(
+                                  currentCityEntity.weather[0].description,
+                                  style: const TextStyle(fontSize: 20, color: Colors.grey),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Text(
-                                "${currentCityEntity.main.temp.round()}\u00B0",
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Text(
+                                  "${currentCityEntity.main.temp.round()}\u00B0",
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                /// max temp
-                                Column(
-                                  children: [
-                                    const Text(
-                                      "max",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.grey,
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  /// max temp
+                                  Column(
+                                    children: [
+                                      const Text(
+                                        "max",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.grey,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      "${currentCityEntity.main.tempMax.round()}\u00B0",
-                                    )
-                                  ],
-                                ),
-
-                                /// divider
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 10.0,
-                                    right: 10,
-                                  ),
-                                  child: Container(
-                                    color: Colors.grey,
-                                    width: 2,
-                                    height: 40,
-                                  ),
-                                ),
-
-                                /// min temp
-                                Column(
-                                  children: [
-                                    const Text(
-                                      "min",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.grey,
+                                      const SizedBox(
+                                        height: 10,
                                       ),
+                                      Text(
+                                        "${currentCityEntity.main.tempMax.round()}\u00B0",
+                                      )
+                                    ],
+                                  ),
+
+                                  /// divider
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 10.0,
+                                      right: 10,
                                     ),
-                                    const SizedBox(
-                                      height: 10,
+                                    child: Container(
+                                      color: Colors.grey,
+                                      width: 2,
+                                      height: 40,
                                     ),
-                                    Text(
-                                      "${currentCityEntity.main.tempMin.round()}\u00B0",
-                                    )
-                                  ],
-                                ),
-                              ],
-                            )
-                          ],
+                                  ),
+
+                                  /// min temp
+                                  Column(
+                                    children: [
+                                      const Text(
+                                        "min",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "${currentCityEntity.main.tempMin.round()}\u00B0",
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ));
+                    ],
+                  ),
+                );
               }
 
               if (state.cwStatus is CwError) {

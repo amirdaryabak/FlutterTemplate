@@ -48,7 +48,7 @@ class AppThemeConfig {
           backgroundColor: MaterialStateProperty.all(primaryColor),
         ),
       ),
-      scaffoldBackgroundColor: backgroundColor,
+      // scaffoldBackgroundColor: Colors.red,
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),

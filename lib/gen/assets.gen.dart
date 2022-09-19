@@ -19,6 +19,7 @@ class Assets {
       AssetGenImage('assets/flutterLogoPng.png');
   static const AssetGenImage musicCover =
       AssetGenImage('assets/musicCover.jpg');
+  static const SvgGenImage pinMapIcon = SvgGenImage('assets/pinMapIcon.svg');
   static const SvgGenImage test = SvgGenImage('assets/test.svg');
   static const String testMusic = 'assets/testMusic.mp3';
 }
