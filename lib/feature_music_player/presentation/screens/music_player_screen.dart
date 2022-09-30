@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/utils/duration_extensions.dart';
+import 'package:flutter_template/gen/assets.gen.dart';
 import 'package:just_audio/just_audio.dart';
 
 class MusicPlayerScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
 
   @override
   void initState() {
-    audioPlayer.setAsset('assets/testMusic.mp3').then((value) {
+    audioPlayer.setAsset(Assets.testMusic).then((value) {
       duration = value;
       audioPlayer.play();
       timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
@@ -32,10 +33,15 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
   }
 
   @override
-  Future<void> dispose() async {
+  void dispose() async {
+    disposePlayer();
+    timer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> disposePlayer() async {
     await audioPlayer.pause();
     await audioPlayer.dispose();
-    super.dispose();
   }
 
   @override

@@ -47,6 +47,8 @@ flutter:
 
   assets:
     - assets/
+    - assets/img/posts/large/
+    - assets/img/posts/small/
 
 flutter_gen:
   integrations:

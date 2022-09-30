@@ -4,7 +4,7 @@ class MainButtonWidget extends StatelessWidget {
   final bool isEnabled;
   final String text;
   final Function() onTap;
-  final Color primaryColor;
+  final Color? primaryColor;
   final ButtonStyle? buttonStyle;
   final TextStyle? textStyle;
   final double height;
@@ -13,7 +13,7 @@ class MainButtonWidget extends StatelessWidget {
   const MainButtonWidget({
     Key? key,
     required this.isEnabled,
-    required this.primaryColor,
+    this.primaryColor,
     required this.onTap,
     this.text = 'Done',
     this.buttonStyle,
@@ -37,7 +37,7 @@ class MainButtonWidget extends StatelessWidget {
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
                 minimumSize: MaterialStateProperty.all(const Size(190, 48)),
-                backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+                backgroundColor: MaterialStateProperty.all<Color>(primaryColor == null ? Theme.of(context).primaryColor : primaryColor!),
               )
             : ButtonStyle(
                 shape: MaterialStateProperty.all(

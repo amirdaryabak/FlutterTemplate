@@ -6,7 +6,7 @@ class LightThemeColors {
   static const onSecondaryColor = Colors.white;
   static const surfaceColor = Color(0x0d000000);
   static const backgroundColor = Colors.white;
-  static const primaryTextColor = Color(0xFF212121);
+  static const primaryTextColor = Colors.white;
   static const secondaryTextColor = Color(0xFF212121);
 }
 
