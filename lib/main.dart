@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_template/core/config/app_theme/app_theme_config.dart';
 import 'package:flutter_template/core/config/bloc/theme_bloc.dart';
 import 'package:flutter_template/core/config/my_http_overrides.dart';
@@ -25,11 +27,11 @@ void main() async {
 
   await Locator.setup();
 
-  runApp(const App());
+  runApp(const MyApp());
 }
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +42,17 @@ class App extends StatelessWidget {
           state as SetThemeState;
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
             supportedLocales: const [
               Locale('en', ''),
               Locale('fa', ''),
             ],
-            locale: const Locale('en'),
+            locale: const Locale('en', ''),
             theme: state.themeMode == ThemeMode.dark ? AppThemeConfig.dark().getTheme() : AppThemeConfig.light().getTheme(),
             home: MultiBlocProvider(
               providers: [

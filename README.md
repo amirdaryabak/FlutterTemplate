@@ -6,3 +6,7 @@
 - Light & Dark Theme
 - Video Player
 - Music Player
+- Map
+- Native Splash
+- Slider
+- Localizations
