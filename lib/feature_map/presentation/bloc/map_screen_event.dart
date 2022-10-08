@@ -45,3 +45,13 @@ class SetUserLocationEvent extends MapScreenEvent {
     required this.userLocation,
   });
 }
+
+class GetDirectionsEvent extends MapScreenEvent {
+  final LatLng origin;
+  final LatLng destination;
+
+  GetDirectionsEvent({
+    required this.origin,
+    required this.destination,
+  });
+}

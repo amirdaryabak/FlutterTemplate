@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/config/bloc/theme_bloc.dart';
 import 'package:flutter_template/core/config/language_enum.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SimpleScreen extends StatelessWidget {
   const SimpleScreen({

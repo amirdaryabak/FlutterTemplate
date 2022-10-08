@@ -59,6 +59,28 @@ class _MapApiProvider implements MapApiProvider {
     return httpResponse;
   }
 
+  @override
+  Future<HttpResponse<GetDirectionDto>> getDirections(
+      {apiKey = apiKey, required origin, required destination}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'origin': origin,
+      r'destination': destination
+    };
+    final _headers = <String, dynamic>{r'Api-Key': apiKey};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetDirectionDto>>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'v4/direction/no-traffic/',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetDirectionDto.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

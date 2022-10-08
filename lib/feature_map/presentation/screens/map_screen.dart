@@ -5,7 +5,7 @@ import 'package:flutter_template/core/utils/constants.dart';
 import 'package:flutter_template/core/utils/dart_utils.dart';
 import 'package:flutter_template/core/utils/dialog_utils.dart';
 import 'package:flutter_template/core/utils/search_delay_on_change.dart';
-import 'package:flutter_template/core/utils/tile_provider.dart';
+import 'package:flutter_template/feature_map/utils/tile_provider.dart';
 import 'package:flutter_template/core/widgets/main_button_widget.dart';
 import 'package:flutter_template/core/widgets/main_text_field_widget.dart';
 import 'package:flutter_template/feature_map/presentation/bloc/map_bloc.dart';
@@ -73,6 +73,21 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
           lat: mapEvent.center.latitude,
           lon: mapEvent.center.longitude,
         );
+        MapBloc mapBloc = BlocProvider.of<MapBloc>(context);
+        mapBloc.userLocation?.let((it) {
+          mapBloc.add(
+            GetDirectionsEvent(
+              origin: LatLng(
+                it.latitude,
+                it.longitude,
+              ),
+              destination: LatLng(
+                mapEvent.center.latitude,
+                mapEvent.center.longitude,
+              ),
+            ),
+          );
+        });
       });
     }
   }
@@ -86,23 +101,43 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
             Flexible(
               child: Stack(
                 children: [
-                  FlutterMap(
-                    mapController: _mapController,
-                    options: MapOptions(
-                      bounds: LatLngBounds(LatLng(35.715090, 51.667227), LatLng(35.718269, 51.171029)),
-                      boundsOptions: const FitBoundsOptions(padding: EdgeInsets.all(16.0)),
-                      // center: LatLng(35.6892, 51.3890),
-                      // zoom: 15,
-                      interactiveFlags: interactiveFlags,
-                    ),
-                    layers: [
-                      TileLayerOptions(
-                        urlTemplate:
-                            'https://api.mapbox.com/styles/v1/sepidehtadayon/ckytn288a000814llavgwz2ys/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2VwaWRlaHRhZGF5b24iLCJhIjoiY2t5dG16Yzh1MGdhdTJ4bzhqa2N5aXhuZCJ9.RF8Hc0pbIBQygcPtSkXVOA',
-                        subdomains: ['a', 'b', 'c'],
-                        tileProvider: CachedTileProvider(),
-                      ),
-                    ],
+                  BlocBuilder<MapBloc, MapState>(
+                    buildWhen: (previousState, currentState) {
+                      if (currentState is MapInitial || currentState is GetDirectionsState) {
+                        return true;
+                      }
+                      return false;
+                    },
+                    builder: (context, state) {
+                      return FlutterMap(
+                        mapController: _mapController,
+                        options: MapOptions(
+                          bounds: LatLngBounds(LatLng(35.715090, 51.667227), LatLng(35.718269, 51.171029)),
+                          boundsOptions: const FitBoundsOptions(padding: EdgeInsets.all(16.0)),
+                          // center: LatLng(35.6892, 51.3890),
+                          // zoom: 15,
+                          interactiveFlags: interactiveFlags,
+                        ),
+                        layers: [
+                          TileLayerOptions(
+                            urlTemplate:
+                                'https://api.mapbox.com/styles/v1/sepidehtadayon/ckytn288a000814llavgwz2ys/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2VwaWRlaHRhZGF5b24iLCJhIjoiY2t5dG16Yzh1MGdhdTJ4bzhqa2N5aXhuZCJ9.RF8Hc0pbIBQygcPtSkXVOA',
+                            subdomains: ['a', 'b', 'c'],
+                            tileProvider: CachedTileProvider(),
+                          ),
+                          if (state is GetDirectionsState)
+                            PolylineLayerOptions(
+                              polylines: [
+                                Polyline(
+                                  points: state.routingPoints,
+                                  strokeWidth: 8,
+                                  color: Theme.of(context).primaryColor,
+                                )
+                              ],
+                            ),
+                        ],
+                      );
+                    },
                   ),
                   Positioned(
                     top: 24,

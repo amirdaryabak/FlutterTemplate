@@ -46,3 +46,19 @@ class GotUserLocationState extends MapState {
     required this.isGettingUserLocation,
   });
 }
+
+class GetDirectionsState extends MapState {
+  final List<LatLng> routingPoints;
+
+  GetDirectionsState({
+    required this.routingPoints,
+  });
+}
+
+class GetDirectionsError extends MapState {
+  final String errorMessage;
+
+  GetDirectionsError({
+    required this.errorMessage,
+  });
+}

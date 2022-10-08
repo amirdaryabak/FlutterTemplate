@@ -11,12 +11,74 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsImgGen {
+  const $AssetsImgGen();
+
+  $AssetsImgPostsGen get posts => const $AssetsImgPostsGen();
+}
+
+class $AssetsImgPostsGen {
+  const $AssetsImgPostsGen();
+
+  $AssetsImgPostsLargeGen get large => const $AssetsImgPostsLargeGen();
+  $AssetsImgPostsSmallGen get small => const $AssetsImgPostsSmallGen();
+}
+
+class $AssetsImgPostsLargeGen {
+  const $AssetsImgPostsLargeGen();
+
+  /// File path: assets/img/posts/large/large_post_1.jpg
+  AssetGenImage get largePost1 =>
+      const AssetGenImage('assets/img/posts/large/large_post_1.jpg');
+
+  /// File path: assets/img/posts/large/large_post_2.jpg
+  AssetGenImage get largePost2 =>
+      const AssetGenImage('assets/img/posts/large/large_post_2.jpg');
+
+  /// File path: assets/img/posts/large/large_post_3.jpg
+  AssetGenImage get largePost3 =>
+      const AssetGenImage('assets/img/posts/large/large_post_3.jpg');
+
+  /// File path: assets/img/posts/large/large_post_4.jpg
+  AssetGenImage get largePost4 =>
+      const AssetGenImage('assets/img/posts/large/large_post_4.jpg');
+
+  /// File path: assets/img/posts/large/large_post_5.jpg
+  AssetGenImage get largePost5 =>
+      const AssetGenImage('assets/img/posts/large/large_post_5.jpg');
+
+  /// File path: assets/img/posts/large/large_post_6.jpg
+  AssetGenImage get largePost6 =>
+      const AssetGenImage('assets/img/posts/large/large_post_6.jpg');
+}
+
+class $AssetsImgPostsSmallGen {
+  const $AssetsImgPostsSmallGen();
+
+  /// File path: assets/img/posts/small/small_post_1.jpg
+  AssetGenImage get smallPost1 =>
+      const AssetGenImage('assets/img/posts/small/small_post_1.jpg');
+
+  /// File path: assets/img/posts/small/small_post_2.jpg
+  AssetGenImage get smallPost2 =>
+      const AssetGenImage('assets/img/posts/small/small_post_2.jpg');
+
+  /// File path: assets/img/posts/small/small_post_3.jpg
+  AssetGenImage get smallPost3 =>
+      const AssetGenImage('assets/img/posts/small/small_post_3.jpg');
+
+  /// File path: assets/img/posts/small/small_post_4.jpg
+  AssetGenImage get smallPost4 =>
+      const AssetGenImage('assets/img/posts/small/small_post_4.jpg');
+}
+
 class Assets {
   Assets._();
 
   static const String file = 'assets/file.mp4';
   static const AssetGenImage flutterLogoPng =
       AssetGenImage('assets/flutterLogoPng.png');
+  static const $AssetsImgGen img = $AssetsImgGen();
   static const AssetGenImage musicCover =
       AssetGenImage('assets/musicCover.jpg');
   static const SvgGenImage pinMapIcon = SvgGenImage('assets/pinMapIcon.svg');
