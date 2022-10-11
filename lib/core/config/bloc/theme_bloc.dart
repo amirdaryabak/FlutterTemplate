@@ -14,7 +14,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       : super(SetThemeState(
           themeMode: ThemeMode.light,
           language: Language.en,
-        )) {
+        ),) {
     on<ThemeEvent>((event, emit) {
       if (event is SetThemeEvent) {
         themeMode = event.themeMode;

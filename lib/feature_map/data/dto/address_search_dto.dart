@@ -1,69 +1,54 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
-import 'package:flutter_template/feature_map/domain/entities/address_search_entity.dart';
+part 'address_search_dto.g.dart';
 
-AddressSearchDto addressSearchFromJson(String str) => AddressSearchDto.fromJson(json.decode(str));
+@JsonSerializable()
+class AddressSearchDto {
+  final int? count;
+  final List<ItemSearchDto> items;
 
-class AddressSearchDto extends AddressSearchEntity {
   AddressSearchDto({
-    int? count,
-    List<ItemSearchDto>? items,
-  }) : super(
-    count: count ?? 0,
-    items: items ?? [],
-  );
+    required this.count,
+    required this.items,
+  });
 
-  factory AddressSearchDto.fromJson(Map<String, dynamic> json) => AddressSearchDto(
-    count: json["count"],
-    items: List<ItemSearchDto>.from(json["items"].map((x) => ItemSearchDto.fromJson(x))),
-  );
+  factory AddressSearchDto.fromJson(Map<String, dynamic> json) => _$AddressSearchDtoFromJson(json);
 }
 
-class ItemSearchDto extends ItemSearchEntity {
+@JsonSerializable()
+class ItemSearchDto {
+  final String? title;
+  final String address;
+  final String? category;
+  final String? type;
+  final String? region;
+  final String? neighbourhood;
+  final LocationDto location;
+
   ItemSearchDto({
-    String? title,
-    String? address,
-    String? category,
-    String? type,
-    String? region,
-    String? neighbourhood,
-    required LocationDto location,
-  }): super(
-    title: title ?? '',
-    address: address ?? '',
-    category: category ?? '',
-    type: type ?? '',
-    region: region ?? '',
-    neighbourhood: neighbourhood ?? '',
-    location: location,
-  );
+    required this.title,
+    required this.address,
+    required this.category,
+    required this.type,
+    required this.region,
+    required this.neighbourhood,
+    required this.location,
+  });
 
-  factory ItemSearchDto.fromJson(Map<String, dynamic> json) => ItemSearchDto(
-    title: json["title"],
-    address: json["address"],
-    category: json["category"],
-    type: json["type"],
-    region: json["region"],
-    neighbourhood: json["neighbourhood"],
-    location: LocationDto.fromJson(json["location"]),
-  );
+  factory ItemSearchDto.fromJson(Map<String, dynamic> json) => _$ItemSearchDtoFromJson(json);
 }
 
+@JsonSerializable()
+class LocationDto {
+  @JsonKey(name: 'x')
+  final double longitude;
+  @JsonKey(name: 'y')
+  final double latitude;
 
-class LocationDto extends LocationEntity {
   LocationDto({
-    required double x,
-    required double y,
-  }): super(
-    longitude: x,
-    latitude: y,
-  );
+    required this.longitude,
+    required this.latitude,
+  });
 
-
-
-  factory LocationDto.fromJson(Map<String, dynamic> json) => LocationDto(
-    x: json["x"].toDouble(),
-    y: json["y"].toDouble(),
-  );
+  factory LocationDto.fromJson(Map<String, dynamic> json) => _$LocationDtoFromJson(json);
 }
-

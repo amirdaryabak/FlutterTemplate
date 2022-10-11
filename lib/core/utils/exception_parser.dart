@@ -11,7 +11,7 @@ class ExceptionParser {
   }
 
   static bool isResponseSuccessful<T>(HttpResponse<T> httpResponse) {
-    var statusCode = httpResponse.response.statusCode;
+    final statusCode = httpResponse.response.statusCode;
     if (statusCode == HttpStatus.ok ||
         statusCode == HttpStatus.created ||
         statusCode == HttpStatus.accepted ||

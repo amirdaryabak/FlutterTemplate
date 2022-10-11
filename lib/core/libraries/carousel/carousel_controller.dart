@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'carousel_options.dart';
-import 'carousel_state.dart';
-import 'carousel_utils.dart';
+import 'package:flutter_template/core/libraries/carousel/carousel_options.dart';
+import 'package:flutter_template/core/libraries/carousel/carousel_state.dart';
+import 'package:flutter_template/core/libraries/carousel/carousel_utils.dart';
 
 abstract class CarouselController {
   bool get ready;
@@ -37,6 +37,7 @@ class CarouselControllerImpl implements CarouselController {
       _readyCompleter.complete();
     }
   }
+  CarouselState? get state => _state;
 
   void _setModeController() =>
       _state!.changeMode(CarouselPageChangedReason.controller);
@@ -54,7 +55,7 @@ class CarouselControllerImpl implements CarouselController {
   @override
   Future<void> nextPage(
       {Duration? duration = const Duration(milliseconds: 300),
-      Curve? curve = Curves.linear}) async {
+      Curve? curve = Curves.linear,}) async {
     final bool isNeedResetTimer = _state!.options.pauseAutoPlayOnManualNavigate;
     if (isNeedResetTimer) {
       _state!.onResetTimer();
@@ -73,7 +74,7 @@ class CarouselControllerImpl implements CarouselController {
   @override
   Future<void> previousPage(
       {Duration? duration = const Duration(milliseconds: 300),
-      Curve? curve = Curves.linear}) async {
+      Curve? curve = Curves.linear,}) async {
     final bool isNeedResetTimer = _state!.options.pauseAutoPlayOnManualNavigate;
     if (isNeedResetTimer) {
       _state!.onResetTimer();
@@ -92,7 +93,7 @@ class CarouselControllerImpl implements CarouselController {
   @override
   void jumpToPage(int page) {
     final index = getRealIndex(_state!.pageController!.page!.toInt(),
-        _state!.realPage - _state!.initialPage, _state!.itemCount);
+        _state!.realPage - _state!.initialPage, _state!.itemCount,);
 
     _setModeController();
     final int pageToJump = _state!.pageController!.page!.toInt() + page - index;
@@ -106,18 +107,18 @@ class CarouselControllerImpl implements CarouselController {
   @override
   Future<void> animateToPage(int page,
       {Duration? duration = const Duration(milliseconds: 300),
-      Curve? curve = Curves.linear}) async {
+      Curve? curve = Curves.linear,}) async {
     final bool isNeedResetTimer = _state!.options.pauseAutoPlayOnManualNavigate;
     if (isNeedResetTimer) {
       _state!.onResetTimer();
     }
     final index = getRealIndex(_state!.pageController!.page!.toInt(),
-        _state!.realPage - _state!.initialPage, _state!.itemCount);
+        _state!.realPage - _state!.initialPage, _state!.itemCount,);
     _setModeController();
     await _state!.pageController!.animateToPage(
         _state!.pageController!.page!.toInt() + page - index,
         duration: duration!,
-        curve: curve!);
+        curve: curve!,);
     if (isNeedResetTimer) {
       _state!.onResumeTimer();
     }

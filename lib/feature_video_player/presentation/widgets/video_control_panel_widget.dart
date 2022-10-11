@@ -41,7 +41,7 @@ class _VideoControlPanelState extends State<VideoControlPanel> {
     return Positioned.fill(
       child: GestureDetector(
         onTap: widget.gestureTapCallback,
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(color: Colors.black.withOpacity(0.2)),
           child: Padding(
             padding: const EdgeInsets.only(left: 16, top: 48, right: 16),

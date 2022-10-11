@@ -42,7 +42,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         initControlPanelTimer();
                       }
                     },
-                    child: VideoPlayer(_videoPlayerController))),
+                    child: VideoPlayer(_videoPlayerController),),),
           ),
           if (showControlPanel)
             VideoControlPanel(

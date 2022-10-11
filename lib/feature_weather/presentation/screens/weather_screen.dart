@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/widgets/dot_loading_widget.dart';
 import 'package:flutter_template/core/widgets/main_root_page_widget.dart';
-import 'package:flutter_template/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:flutter_template/feature_weather/data/dto/current_city_dto.dart';
 import 'package:flutter_template/feature_weather/presentation/bloc/cw_status.dart';
 import 'package:flutter_template/feature_weather/presentation/bloc/home_bloc.dart';
 
@@ -41,7 +41,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               if (state.cwStatus is CwCompleted) {
                 /// cast
                 final CwCompleted cwCompleted = state.cwStatus as CwCompleted;
-                final CurrentCityEntity currentCityEntity = cwCompleted.currentCityEntity;
+                final CurrentCityDto currentCityEntity = cwCompleted.currentCityEntity;
 
                 return Expanded(
                   child: ListView(

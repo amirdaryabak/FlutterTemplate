@@ -7,7 +7,7 @@ class SearchDelayOnChange {
 
   SearchDelayOnChange({this.seconds = 1});
 
-  run(VoidCallback action) {
+  void run(VoidCallback action) {
     if (null != _timer) {
       _timer?.cancel();
     }

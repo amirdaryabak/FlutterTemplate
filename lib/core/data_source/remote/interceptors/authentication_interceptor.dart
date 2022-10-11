@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 class AuthenticationInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers["Content-type"] = 'application/json';
     options.headers["Accept"] = 'application/json';
     if (kDebugMode) {

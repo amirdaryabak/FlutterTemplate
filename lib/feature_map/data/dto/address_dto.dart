@@ -1,24 +1,20 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
-import 'package:flutter_template/feature_map/domain/entities/address_entity.dart';
+part 'address_dto.g.dart';
 
-AddressDto addressModelFromJson(String str) => AddressDto.fromJson(json.decode(str));
+@JsonSerializable()
+class AddressDto {
+  final String? address;
+  final String? county;
+  final String? province;
 
-class AddressDto extends AddressEntity {
   AddressDto({
-    String? address,
-    String? county,
-    String? province,
-  }): super(
-    address: address,
-    county: county,
-    province: province,
-  );
+    required this.address,
+    required this.county,
+    required this.province,
+  });
 
-  factory AddressDto.fromJson(Map<String, dynamic> json) => AddressDto(
-    address: json["formatted_address"],
-    county: json["county"],
-    province: json["province"],
-  );
+  factory AddressDto.fromJson(Map<String, dynamic> json) => _$AddressDtoFromJson(json);
 
+  Map<String, dynamic> toJson() => _$AddressDtoToJson(this);
 }

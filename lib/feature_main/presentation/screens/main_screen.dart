@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/core/utils/simple_screen.dart';
 import 'package:flutter_template/core/widgets/bottom_navigation/bottom_navigation.dart';
 import 'package:flutter_template/feature_home/presentation/screens/home_screen.dart';
 import 'package:flutter_template/feature_main/presentation/bloc/main_bloc.dart';
-import 'package:flutter_template/core/utils/simple_screen.dart';
 
 const int firstIndex = 0;
 const int secondIndex = 1;
@@ -28,7 +28,7 @@ class MainScreen extends StatelessWidget {
   };
 
   Future<bool> _onWillPop(BuildContext context) async {
-    MainBloc mainBloc = BlocProvider.of<MainBloc>(context);
+    final MainBloc mainBloc = BlocProvider.of<MainBloc>(context);
     final NavigatorState currentSelectedTabNavigatorState = map[mainBloc.selectedScreenIndex]!.currentState!;
     if (currentSelectedTabNavigatorState.canPop()) {
       currentSelectedTabNavigatorState.pop();
@@ -118,7 +118,7 @@ class MainScreen extends StatelessWidget {
     required int index,
     required Widget child,
   }) {
-    MainBloc mainBloc = BlocProvider.of<MainBloc>(context);
+    final MainBloc mainBloc = BlocProvider.of<MainBloc>(context);
     return key.currentState == null && mainBloc.selectedScreenIndex != index
         ? Container()
         : Navigator(

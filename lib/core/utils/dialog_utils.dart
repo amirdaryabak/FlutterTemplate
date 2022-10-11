@@ -27,7 +27,7 @@ class DialogUtils {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           resizeToAvoidBottomInset: false,
-          body: Container(
+          body: DecoratedBox(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(25),
@@ -44,7 +44,6 @@ class DialogUtils {
                   Container(
                     width: 52,
                     height: 52,
-                    padding: const EdgeInsets.all(0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: mainColor,
@@ -126,7 +125,7 @@ class DialogUtils {
               ),
             ),
             Expanded(
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(topRight: Radius.circular(25), topLeft: Radius.circular(25)),
                   color: Colors.white,
@@ -179,7 +178,7 @@ class DialogUtils {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           resizeToAvoidBottomInset: false,
-          body: Container(
+          body: DecoratedBox(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(topRight: Radius.circular(25), topLeft: Radius.circular(25)),
               color: Colors.white,
@@ -224,7 +223,7 @@ class DialogUtils {
 
   static void getDialog({
     required String message,
-    required Function onTap,
+    required VoidCallback onTap,
     required Color primaryColorButton,
     required SvgPicture bavSvg,
     String buttonText = 'Done',
@@ -243,7 +242,7 @@ class DialogUtils {
             bottomNavigationBar: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Center(
-                child: Container(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15.0),
@@ -272,9 +271,7 @@ class DialogUtils {
                             isEnabled: true,
                             primaryColor: primaryColorButton,
                             text: buttonText,
-                            onTap: () {
-                              onTap();
-                            },
+                            onTap: onTap,
                           ),
                         if (showButton)
                           const SizedBox(
@@ -309,7 +306,7 @@ class DialogUtils {
             bottomNavigationBar: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Center(
-                child: Container(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15.0),

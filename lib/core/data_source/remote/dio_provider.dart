@@ -1,7 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_template/core/data_source/remote/interceptors/authentication_interceptor.dart';
 import 'package:flutter_template/core/data_source/remote/interceptors/logging_interceptor.dart';
 import 'package:flutter_template/core/utils/constants.dart';
-import 'package:dio/dio.dart';
 
 class DioProvider {
   late Dio dio;

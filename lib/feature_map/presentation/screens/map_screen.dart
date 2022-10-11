@@ -1,19 +1,19 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/core/utils/constants.dart';
 import 'package:flutter_template/core/utils/dart_utils.dart';
 import 'package:flutter_template/core/utils/dialog_utils.dart';
 import 'package:flutter_template/core/utils/search_delay_on_change.dart';
-import 'package:flutter_template/feature_map/utils/tile_provider.dart';
 import 'package:flutter_template/core/widgets/main_button_widget.dart';
 import 'package:flutter_template/core/widgets/main_text_field_widget.dart';
 import 'package:flutter_template/feature_map/presentation/bloc/map_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_template/feature_map/utils/tile_provider.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 const originIndex = 0;
 const destinationIndex = 1;
@@ -61,6 +61,12 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
   void onMapEvent(MapEvent mapEvent) {
     if (mapEvent is MapEventMoveStart) {
       BlocProvider.of<MapBloc>(context).add(
@@ -73,7 +79,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
           lat: mapEvent.center.latitude,
           lon: mapEvent.center.longitude,
         );
-        MapBloc mapBloc = BlocProvider.of<MapBloc>(context);
+        final MapBloc mapBloc = BlocProvider.of<MapBloc>(context);
         mapBloc.userLocation?.let((it) {
           mapBloc.add(
             GetDirectionsEvent(
@@ -428,10 +434,10 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     final latTween = Tween<double>(begin: _mapController.center.latitude, end: destLocation.latitude);
     final lngTween = Tween<double>(begin: _mapController.center.longitude, end: destLocation.longitude);
     final zoomTween = Tween<double>(begin: _mapController.zoom, end: destZoom);
-    var controller = AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
+    final controller = AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
     // The animation determines what path the animation will take. You can try different Curves values, although I found
     // fastOutSlowIn to be my favorite.
-    Animation<double> animation = CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn);
+    final Animation<double> animation = CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn);
 
     controller.addListener(() {
       _mapController.move(
@@ -454,8 +460,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     controller.forward();
   }
 
-  void _moveToCurrentLocation() async {
-    Location location = Location();
+  Future<void> _moveToCurrentLocation() async {
+    final Location location = Location();
     bool serviceEnabled;
     PermissionStatus permissionGranted;
 
@@ -474,7 +480,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         return;
       }
     }
-    MapBloc mapBloc = BlocProvider.of<MapBloc>(context);
+    final MapBloc mapBloc = BlocProvider.of<MapBloc>(context);
     mapBloc.add(
       LoadingEvent(),
     );
@@ -484,7 +490,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       ),
     );
     try {
-      var currentLocation = await location.getLocation();
+      final currentLocation = await location.getLocation();
       mapBloc.add(
         GettingUserLocationEvent(
           isGettingUserLocation: false,

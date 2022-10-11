@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MainButtonWidget extends StatelessWidget {
   final bool isEnabled;
   final String text;
-  final Function() onTap;
+  final VoidCallback onTap;
   final Color? primaryColor;
   final ButtonStyle? buttonStyle;
   final TextStyle? textStyle;
@@ -28,9 +28,7 @@ class MainButtonWidget extends StatelessWidget {
       height: height,
       width: width,
       child: ElevatedButton(
-        onPressed: () {
-          onTap();
-        },
+        onPressed: onTap,
         style: isEnabled
             ? ButtonStyle(
                 shape: MaterialStateProperty.all(

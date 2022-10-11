@@ -1,17 +1,18 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/core/config/app_theme/app_theme_config.dart';
 import 'package:flutter_template/core/config/bloc/theme_bloc.dart';
 import 'package:flutter_template/core/config/my_http_overrides.dart';
+import 'package:flutter_template/feature_main/presentation/bloc/main_bloc.dart';
+import 'package:flutter_template/feature_main/presentation/screens/main_screen.dart';
 import 'package:flutter_template/feature_map/presentation/bloc/map_bloc.dart';
 import 'package:flutter_template/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:flutter_template/locator.dart';
-import 'package:flutter_template/feature_main/presentation/bloc/main_bloc.dart';
-import 'package:flutter_template/feature_main/presentation/screens/main_screen.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -22,10 +23,10 @@ void main() async {
     statusBarIconBrightness: Brightness.dark,
     systemNavigationBarColor: Colors.white,
     systemNavigationBarIconBrightness: Brightness.dark,
-  ));
+  ),);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  await Locator.setup();
+  Locator.setup();
 
   runApp(const MyApp());
 }

@@ -33,7 +33,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
   }
 
   @override
-  void dispose() async {
+  void dispose() {
     disposePlayer();
     timer?.cancel();
     super.dispose();
@@ -51,7 +51,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
@@ -65,11 +65,11 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                     sigmaX: 30,
                     sigmaY: 30,
                   ),
-                  child: Container(
+                  child: const ColoredBox(
                     color: Colors.black26,
                   ),
                 ),
-              )),
+              ),),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
@@ -108,7 +108,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                           icon: const Icon(
                             CupertinoIcons.heart,
                             color: Colors.white,
-                          ))
+                          ),)
                     ],
                   ),
                   Expanded(
@@ -184,7 +184,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                           icon: const Icon(
                             CupertinoIcons.backward_fill,
                             color: Colors.white,
-                          )),
+                          ),),
                       GestureDetector(
                         onTap: () {
                           if (audioPlayer.playing) {
@@ -202,20 +202,20 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                               gradient: LinearGradient(colors: [
                                 Color(0xff74FF7E),
                                 Color(0xff73C679),
-                              ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                              ], begin: Alignment.topCenter, end: Alignment.bottomCenter,),
                             ),
                             child: Icon(
                               audioPlayer.playing ? CupertinoIcons.pause : CupertinoIcons.play_fill,
                               color: Colors.white,
                               size: 32,
-                            )),
+                            ),),
                       ),
                       IconButton(
                           onPressed: () {},
                           icon: const Icon(
                             CupertinoIcons.forward_fill,
                             color: Colors.white,
-                          )),
+                          ),),
                     ],
                   )
                 ],

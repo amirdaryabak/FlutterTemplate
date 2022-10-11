@@ -15,11 +15,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.getCurrentWeatherUseCase)
       : super(HomeState(
           cwStatus: CwLoading(),
-        )) {
+        ),) {
     on<LoadCwEvent>((event, emit) async {
       emit(state.copyWith(newCwStatus: CwLoading()));
 
-      DataState dataState = await getCurrentWeatherUseCase(
+      final DataState dataState = await getCurrentWeatherUseCase(
         params: event.cityName,
       );
 

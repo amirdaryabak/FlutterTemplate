@@ -505,12 +505,12 @@ packages:
     source: hosted
     version: "0.8.1"
   lint:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: lint
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.0"
+    version: "1.10.0"
   lints:
     dependency: transitive
     description:

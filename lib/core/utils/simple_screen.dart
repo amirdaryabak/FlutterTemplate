@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_template/core/config/bloc/theme_bloc.dart';
 import 'package:flutter_template/core/config/language_enum.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SimpleScreen extends StatelessWidget {
   const SimpleScreen({
@@ -42,7 +42,7 @@ class SimpleScreen extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              ThemeBloc themeBloc = BlocProvider.of<ThemeBloc>(context);
+              final ThemeBloc themeBloc = BlocProvider.of<ThemeBloc>(context);
               if (themeBloc.themeMode == ThemeMode.dark) {
                 themeBloc.add(
                   SetThemeEvent(
@@ -66,7 +66,7 @@ class SimpleScreen extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              ThemeBloc themeBloc = BlocProvider.of<ThemeBloc>(context);
+              final ThemeBloc themeBloc = BlocProvider.of<ThemeBloc>(context);
               themeBloc.add(
                 SetThemeEvent(
                   themeMode: themeBloc.themeMode,

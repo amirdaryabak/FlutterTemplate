@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:flutter_template/core/utils/exception_parser.dart';
 import 'package:flutter_template/feature_weather/data/data_source/remote/api_provider.dart';
-import 'package:flutter_template/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:flutter_template/feature_weather/data/dto/current_city_dto.dart';
 import 'package:flutter_template/feature_weather/domain/repository/weather_repository.dart';
 
 class WeatherRepositoryImpl extends WeatherRepository {
@@ -11,7 +11,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
   WeatherRepositoryImpl(this._apiProvider);
 
   @override
-  Future<DataState<CurrentCityEntity>> getCurrentCityWeather({
+  Future<DataState<CurrentCityDto>> getCurrentCityWeather({
     required String cityName,
   }) async {
     try {

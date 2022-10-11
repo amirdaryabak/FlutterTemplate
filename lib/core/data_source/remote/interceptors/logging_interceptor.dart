@@ -6,7 +6,7 @@ class LoggingInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (kDebugMode) {
       print('REQUEST ${options.method} => PATH: ${options.path} DATA: ${options.data}'
-          'HEADER ${options.headers}');
+          'HEADER ${options.headers}',);
     }
     return super.onRequest(options, handler);
   }
@@ -26,7 +26,7 @@ class LoggingInterceptor extends Interceptor {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     try {
-      dynamic json = err.response?.data;
+      final dynamic json = err.response?.data;
       if (kDebugMode) {
         print('REMOTE ERROR: $json');
       }

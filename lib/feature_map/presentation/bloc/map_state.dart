@@ -24,7 +24,7 @@ class GetAddressErrorState extends MapState {
 }
 
 class GetAddressFilterListState extends MapState {
-  final List<ItemSearchEntity> itemSearchEntityList;
+  final List<ItemSearchDto> itemSearchEntityList;
 
   GetAddressFilterListState({
     required this.itemSearchEntityList,

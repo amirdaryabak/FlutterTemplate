@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:flutter_template/feature_weather/data/dto/current_city_dto.dart';
 
 @immutable
 abstract class CwStatus {}
@@ -8,7 +8,7 @@ abstract class CwStatus {}
 class CwLoading extends CwStatus {}
 
 class CwCompleted extends CwStatus {
-  final CurrentCityEntity currentCityEntity;
+  final CurrentCityDto currentCityEntity;
 
   CwCompleted(this.currentCityEntity);
 }

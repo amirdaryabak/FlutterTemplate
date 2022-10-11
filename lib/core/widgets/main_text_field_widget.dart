@@ -1,5 +1,5 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MainTextField extends StatelessWidget {
   final String? labelText;
@@ -40,9 +40,7 @@ class MainTextField extends StatelessWidget {
         onChanged(text);
       },
       onSubmitted: (text) {
-        if (onSubmitted != null) {
-          onSubmitted!(text);
-        }
+        onSubmitted?.call(text);
       },
       keyboardType: keyboardType,
       textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : TextDirection.rtl,

@@ -13,7 +13,7 @@ class SliderScreen extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 24),
-          Container(
+          ColoredBox(
             color: Colors.grey,
             child: BannerSlider(
               banners: [
