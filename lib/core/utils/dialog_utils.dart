@@ -39,7 +39,6 @@ class DialogUtils {
               padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     width: 52,
@@ -62,7 +61,6 @@ class DialogUtils {
                       Expanded(
                         child: MainCustomerOutLineButtonWidget(
                           isEnabled: true,
-                          height: 48,
                           primaryColor: Theme.of(context).primaryColor,
                           text: declineText,
                           onTap: () {
@@ -79,7 +77,6 @@ class DialogUtils {
                       ),
                       Expanded(
                         child: MainButtonWidget(
-                          height: 48,
                           isEnabled: true,
                           primaryColor: mainColor,
                           text: acceptText,

@@ -2,6 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:flutter_template/core/utils/dart_utils.dart';
 import 'package:flutter_template/feature_map/data/dto/address_search_dto.dart';
+import 'package:flutter_template/feature_map/domain/params/get_directions_params.dart';
+import 'package:flutter_template/feature_map/domain/params/get_fast_address_filter_params.dart';
+import 'package:flutter_template/feature_map/domain/params/get_fast_reverse_params.dart';
 import 'package:flutter_template/feature_map/domain/use_cases/get_directions_usecase.dart';
 import 'package:flutter_template/feature_map/domain/use_cases/get_fast_address_filter_usecase.dart';
 import 'package:flutter_template/feature_map/domain/use_cases/get_fast_reverse_usecase.dart';
@@ -58,10 +61,12 @@ class MapBloc extends Bloc<MapScreenEvent, MapState> {
     required double lat,
     required double lon,
   }) async {
-    final dataState = await _getFastReverseUseCase.call(params: {
-      'lat': lat,
-      'lon': lon,
-    },);
+    final dataState = await _getFastReverseUseCase.call(
+      params: GetFastReverseParams(
+        lat: lat,
+        lon: lon,
+      ),
+    );
     if (dataState is DataSuccess) {
       final data = dataState.data;
       data?.let((it) {
@@ -81,11 +86,13 @@ class MapBloc extends Bloc<MapScreenEvent, MapState> {
     required double lon,
     required String text,
   }) async {
-    final dataState = await _getFastAddressFilterUseCase.call(params: {
-      'lat': lat,
-      'lon': lon,
-      'text': text,
-    },);
+    final dataState = await _getFastAddressFilterUseCase.call(
+      params: GetFastAddressFilterParams(
+        lat: lat,
+        lon: lon,
+        text: text,
+      ),
+    );
     if (dataState is DataSuccess) {
       final data = dataState.data;
       data?.let((it) {
@@ -102,10 +109,10 @@ class MapBloc extends Bloc<MapScreenEvent, MapState> {
     required LatLng destination,
   }) async {
     final dataState = await _getDirectionsUseCase.call(
-      params: {
-        'origin': origin,
-        'destination': destination,
-      },
+      params: GetDirectionsParams(
+        origin: origin,
+        destination: destination,
+      ),
     );
     if (dataState is DataSuccess) {
       final data = dataState.data;

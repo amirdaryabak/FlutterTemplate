@@ -251,8 +251,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                               boxShadow: [
                                 BoxShadow(
                                   color: Theme.of(context).backgroundColor,
-                                  blurRadius: 6, // soften the shadow
-                                  spreadRadius: 0, //extend the shadow
+                                  blurRadius: 6,
                                   offset: const Offset(0, 5),
                                 )
                               ],

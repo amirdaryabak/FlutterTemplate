@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/resources/data_state.dart';
+import 'package:flutter_template/core/utils/dart_utils.dart';
+import 'package:flutter_template/feature_weather/data/dto/current_city_dto.dart';
 import 'package:flutter_template/feature_weather/domain/use_cases/get_current_weather_usecase.dart';
 import 'package:flutter_template/feature_weather/presentation/bloc/cw_status.dart';
 
@@ -19,12 +21,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<LoadCwEvent>((event, emit) async {
       emit(state.copyWith(newCwStatus: CwLoading()));
 
-      final DataState dataState = await getCurrentWeatherUseCase(
+      final DataState<CurrentCityDto> dataState = await getCurrentWeatherUseCase(
         params: event.cityName,
       );
 
       if (dataState is DataSuccess) {
-        emit(state.copyWith(newCwStatus: CwCompleted(dataState.data)));
+        dataState.data?.let((it){
+          emit(state.copyWith(newCwStatus: CwCompleted(it)));
+        });
       }
 
       if (dataState is DataFailed) {

@@ -48,7 +48,7 @@ class ExceptionParser {
       DioError(
         error: httpResponse.response.statusMessage,
         response: httpResponse.response,
-        requestOptions: httpResponse.response.data.request,
+        requestOptions: httpResponse.response.data.request as RequestOptions,
         type: DioErrorType.response,
       ),
     );

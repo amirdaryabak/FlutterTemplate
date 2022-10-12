@@ -1,5 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/core/libraries/carousel/carousel_slider.dart';
 import 'package:flutter_template/core/utils/dummy_data.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
@@ -16,18 +16,15 @@ class CarouselSliderWidget extends StatelessWidget {
         return _CategoryItem(
           left: realIndex == 0 ? 32 : 8,
           right: realIndex == categories.length - 1 ? 32 : 8,
-          category: categories[realIndex],
+          category: categories[index],
         );
       },
       options: CarouselOptions(
-        scrollDirection: Axis.horizontal,
-        viewportFraction: 0.8,
+        autoPlay: true,
         aspectRatio: 1.2,
-        initialPage: 0,
-        scrollPhysics: const BouncingScrollPhysics(),
-        disableCenter: true,
-        enableInfiniteScroll: false,
         enlargeCenterPage: true,
+        scrollPhysics: const BouncingScrollPhysics(),
+        enableInfiniteScroll: false,
         enlargeStrategy: CenterPageEnlargeStrategy.height,
       ),
     );

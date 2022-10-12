@@ -90,7 +90,6 @@ class BottomNavigationItem extends StatelessWidget {
                         ),
                         height: bottomNavigationHeight,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             const SizedBox(height: 4),
                             iconFileName,

@@ -60,13 +60,11 @@ class _BannerSliderState extends State<BannerSlider> {
             child: SmoothPageIndicator(
               controller: _pageController,
               count: widget.banners.length,
-              axisDirection: Axis.horizontal,
               effect: WormEffect(
                 spacing: 4.0,
                 radius: 4.0,
                 dotWidth: 20.0,
                 dotHeight: 2.0,
-                paintStyle: PaintingStyle.fill,
                 dotColor: Colors.grey.shade400,
                 activeDotColor: Theme.of(context).colorScheme.onBackground,
               ),
